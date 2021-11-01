@@ -110,6 +110,7 @@ body {
 }
 
 /*------------Site nav-------------*/
+
 .site-nav-list {
   display: flex;
 }
@@ -125,6 +126,7 @@ body {
   letter-spacing: 0.02em;
   color: var(--primary-text-color);
   text-decoration: none;
+  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 .site-nav-list .link:hover {
   color: var(--primary-accent-color);
@@ -137,9 +139,20 @@ body {
 }
 
 .nav-link {
-  display: block;
   padding-top: 32px;
   padding-bottom: 32px;
+  position: relative;
+}
+
+.nav-link.current::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 4px;
+  background-color: var(--secondary-accent-color);
+  border-radius: 2px;
+  bottom: 0;
+  display: block;
 }
 
 /*-------------Contacts-------------*/
@@ -166,6 +179,7 @@ body {
   letter-spacing: 0.02em;
   color: var(--secondary-text-color);
   text-decoration: none;
+  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 .mail:hover {
   color: var(--secondary-accent-color);
@@ -176,7 +190,9 @@ body {
 .icon-envelope {
   margin-right: 10px;
   fill: currentColor;
+  transition: fill 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
+
 .icon-envelope:hover .icon-envelope:focus {
   fill: var(--secondary-accent-color);
 }
@@ -190,6 +206,7 @@ body {
   letter-spacing: 0.02em;
   color: var(--secondary-text-color);
   text-decoration: none;
+  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 .tel:hover {
   color: var(--secondary-accent-color);
@@ -200,12 +217,13 @@ body {
 .icon-smartphone {
   margin-right: 10px;
   fill: currentColor;
+  transition: fill 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 .icon-smartphone:hover .icon-smartphone:focus {
   fill: var(--secondary-accent-color);
 }
 
-/*--------------Герой---------------*/
+/*--------------Герой(Портфолио)---------------*/
 .filter {
   display: flex;
   justify-content: center;
@@ -224,9 +242,12 @@ body {
   text-align: center;
   letter-spacing: 0.03em;
   color: var(--primary-text-color);
-  background: var(--third-bg-color);
+  background-color: var(--third-bg-color);
   border-radius: 4px;
   border-style: none;
+  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    background-color 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .btn:hover {
@@ -237,7 +258,7 @@ body {
   text-align: center;
   letter-spacing: 0.03em;
   color: var(--primary-title-color);
-  background: var(--primary-accent-color);
+  background-color: var(--primary-accent-color);
   border-radius: 4px;
   box-shadow: 0px 3px 1px rgba(0, 0, 0, 0.1), 0px 1px 2px rgba(0, 0, 0, 0.08),
     0px 2px 2px rgba(0, 0, 0, 0.12);
@@ -251,7 +272,7 @@ body {
   text-align: center;
   letter-spacing: 0.03em;
   color: var(--primary-title-color);
-  background: var(--primary-accent-color);
+  background-color: var(--primary-accent-color);
   border-radius: 4px;
   box-shadow: 0px 3px 1px rgba(0, 0, 0, 0.1), 0px 1px 2px rgba(0, 0, 0, 0.08),
     0px 2px 2px rgba(0, 0, 0, 0.12);
@@ -269,23 +290,47 @@ body {
   flex-basis: calc(100% / 3 - 30px);
   margin-left: 30px;
   margin-bottom: 30px;
-
   background: #ffffff;
   border: 1px solid #eeeeee;
   box-sizing: border-box;
 }
+
+.portfolio-item-wrap {
+  position: relative;
+  overflow: hidden;
+}
+
+.portfolio-item-description {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  color: var(--primary-title-color);
+  font-weight: 400px;
+  font-size: 18px;
+  line-height: 1.56;
+  letter-spacing: 0.03em;
+  background-color: rgba(33, 150, 243, 0.9);
+  padding: 63px 24px;
+  height: 100%;
+  transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    background-color 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
 .portfolio-item:hover {
   flex-basis: calc(100% / 3 - 30px);
   margin-left: 30px;
   margin-bottom: 30px;
-
-  background: var(--secondary-bg-color);
-
+  background-color: var(--secondary-bg-color);
   border: 1px solid #eeeeee;
   box-sizing: border-box;
   box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.12), 0px 4px 4px rgba(0, 0, 0, 0.06),
     1px 4px 6px rgba(0, 0, 0, 0.16);
   cursor: pointer;
+}
+
+.portfolio-item:hover .portfolio-item-description {
+  transform: translateY(-100%);
 }
 
 .portfolio-item-container {
@@ -306,6 +351,7 @@ body {
   color: var(--secondary-text-color);
 }
 
+/*---------------Герой(Студия)---------------*/
 .section-hero {
   padding-top: 200px;
   padding-bottom: 200px;
@@ -351,17 +397,17 @@ body {
   line-height: 1.87;
   letter-spacing: 0.06em;
   color: var(--primary-title-color);
-
   min-width: 200px;
   min-height: 50px;
-
-  background: var(--secondary-accent-color);
+  background-color: var(--secondary-accent-color);
   border-radius: 4px;
   border-style: none;
   cursor: pointer;
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 .hero-btn:hover {
-  background: var(--primary-accent-color);
+  background-color: var(--primary-accent-color);
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
   cursor: pointer;
 }
@@ -433,6 +479,27 @@ body {
   margin-left: 30px;
 }
 
+.work-item-wrap {
+  position: relative;
+}
+.work-item-text {
+  width: 100%;
+  height: 70px;
+  background-color: rgba(47, 48, 58, 0.8);
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 1.14;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  color: var(--primary-title-color);
+  position: absolute;
+  bottom: 0px;
+}
+
+/*--------------Команда-----------*/
 .section-team-title {
   margin-bottom: 50px;
 
@@ -442,7 +509,6 @@ body {
   text-align: center;
   letter-spacing: 0.03em;
 }
-/*--------------Команда-----------*/
 .team-item-bg {
   background: var(--secondary-bg-color);
   box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.12), 0px 1px 1px rgba(0, 0, 0, 0.14),
@@ -504,6 +570,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 .social-link:hover,
 .social-link:focus {
@@ -511,6 +578,7 @@ body {
 }
 .social-icon {
   fill: #afb1b8;
+  transition: fill 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 .social-link:hover .social-icon,
 .social-link:focus .social-icon {
@@ -540,6 +608,7 @@ body {
 
 .clients-icon {
   fill: #afb1b8;
+  transition: fill 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 .clients-link {
   display: flex;
@@ -547,10 +616,11 @@ body {
   justify-content: center;
   width: 170px;
   height: 92px;
-
   border: 1px solid #afb1b8;
   box-sizing: border-box;
   border-radius: 4px;
+  transition: border 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    fill 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 .clients-link:hover,
 .clients-link:focus {
@@ -655,6 +725,7 @@ body {
   height: 100%;
   background-color: rgba(255, 255, 255, 0.1);
   border-radius: 50%;
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 .footer-social-link:not(:last-child) {
   margin-right: 10px;
@@ -665,8 +736,53 @@ body {
 }
 .footer-social-icon {
   fill: var(--secondary-bg-color);
+  transition: fill 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 .footer-social-link:hover,
 .footer-social-link:focus {
   fill: var(--secondary-accent-color);
+}
+
+.backdrop {
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.2);
+  position: fixed;
+  top: 0;
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) opacity 250ms
+    cubic-bezier(0.4, 0, 0.2, 1) visibility 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.modal {
+  width: 528px;
+  min-height: 581px;
+  background-color: rgba(255, 255, 255, 1);
+  border-radius: 4px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(1);
+  transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+.backdrop.is-hidden .modal {
+  transform: translate(-50%, -50%) scale(0.1);
+  transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+.modal-btn {
+  width: 30px;
+  height: 30px;
+  background-color: var(--secondary-bg-color);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 50%;
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.backdrop.is-hidden {
+  visibility: hidden;
+  opacity: 0;
+  pointer-events: none;
 }
